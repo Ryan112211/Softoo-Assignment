@@ -37,3 +37,7 @@ npx cypress run
 ## Additional Resources
 
 Videos and coverage folders for the unit and end-to-end testing are also included in the project.
+
+## Deployment
+
+I have also deployed the website on vercel for the live demo. You can check it out [here](https://softoo-assignment.vercel.app/).
