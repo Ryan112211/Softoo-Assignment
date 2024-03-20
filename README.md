@@ -10,6 +10,10 @@ This project is created using a stack of modern technologies including React, Ty
 - **Jest**: Used for unit testing, with test cases written for the cart.
 - **Cypress**: Used for writing end-to-end test cases.
 
+## Theme Toggle
+
+The theme toggle is implemented using the ShadCN library. It is a simple toggle that changes the theme of the website from light to dark and vice versa. You can use it by clicking the icon on top right of the page
+
 ## Running the Project
 
 To run the project, use the following command:
