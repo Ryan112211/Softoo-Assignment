@@ -1,6 +1,6 @@
 # Project Title
 
-This project is created using a stack of modern technologies including React, TypeScript, ShadCN, RadixUI, Zustand, and SWR.
+This project is created using a stack of modern technologies including React, TypeScript, ShadCN, RadixUI, Zustand, and SWR. I have created a simple Product page that fetches the data using swr from the endpoint given and than stores it inside a local store as we have to add a custom quantity key for changing quantity. I have used latest tool and technologies and given a brief description of these below. I have also added end to end testing using cypress along with the unit testing using jest as i had experiance in end to end too
 
 ## About the Libraries
 
