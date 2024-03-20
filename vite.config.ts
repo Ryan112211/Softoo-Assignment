@@ -14,5 +14,9 @@ export default defineConfig({
   base: process.env.PUBLIC_URL,
   preview: {
     host: '0.0.0.0',
+    port: 3000,
+  },
+  server: {
+    port: 3000,
   },
 });

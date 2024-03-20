@@ -34,7 +34,6 @@ const Cart = ({ products: apiProducts }: CartProps) => {
   };
 
   const handleRemove = (id: number) => {
-    // Handle remove here
     const updatedProducts = products.filter((product) => product.id !== id);
     setProducts(updatedProducts);
   };
