@@ -22,23 +22,17 @@ npm run start
 
 To run unit tests with coverage, use the following command:
 
-\`\`\`bash
 npm run test
-\`\`\`
 
 ## Running End-to-End Tests
 
 For visual end-to-end testing, use the following command:
 
-\`\`\`bash
 npm run cypress:open
-\`\`\`
 
 For console end-to-end testing, use the following command:
 
-\`\`\`bash
 npx cypress run
-\`\`\`
 
 ## Additional Resources
 
