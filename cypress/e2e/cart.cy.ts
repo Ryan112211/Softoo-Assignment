@@ -9,16 +9,16 @@ describe('Cart', () => {
   });
 
   it('increases product quantity for the first item', () => {
-    cy.get('[data-cy=product-quantity]').eq(0).should('contain', '1');
+    cy.get('[data-cy=product-quantity]').eq(0).should('contain', '0');
     cy.get('[data-cy=plus-button]').eq(0).click();
-    cy.get('[data-cy=product-quantity]').eq(0).should('contain', '2');
+    cy.get('[data-cy=product-quantity]').eq(0).should('contain', '1');
   });
 
   it('decreases product quantity for the first item', () => {
     cy.get('[data-cy=plus-button]').eq(0).click();
-    cy.get('[data-cy=product-quantity]').eq(0).should('contain', '2');
-    cy.get('[data-cy=minus-button]').eq(0).click();
     cy.get('[data-cy=product-quantity]').eq(0).should('contain', '1');
+    cy.get('[data-cy=minus-button]').eq(0).click();
+    cy.get('[data-cy=product-quantity]').eq(0).should('contain', '0');
   });
 
   it('removes the first product from cart', () => {
@@ -43,11 +43,11 @@ describe('Cart', () => {
       });
   });
 
-  it('changes total price when product is removed', () => {
+  it('changes total price when product is added', () => {
     cy.get('[data-cy=total]')
       .invoke('text')
       .then((initialTotalPrice) => {
-        cy.get('[data-cy=remove-button]').eq(0).click();
+        cy.get('[data-cy=plus-button]').eq(0).click();
         cy.get('[data-cy=total]').should('not.contain', initialTotalPrice);
       });
   });

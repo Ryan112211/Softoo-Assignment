@@ -13,11 +13,11 @@ const Cart = ({ products: apiProducts }: CartProps) => {
 
   const apiProductsWithQuantity = apiProducts.map((product) => ({
     ...product,
-    quantity: 1,
+    quantity: 0,
   }));
 
   const handleQuantityChange = (item: Product, change: number) => {
-    if (item.quantity === 1 && change === -1) {
+    if (item.quantity === 0 && change === -1) {
       return;
     }
 
