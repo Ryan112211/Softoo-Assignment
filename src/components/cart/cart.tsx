@@ -45,10 +45,11 @@ const Cart = ({ products: apiProducts }: CartProps) => {
     setProducts(updatedProducts);
   };
 
-  const totalPriceWithQuantity = products.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0,
-  );
+  const totalPriceWithQuantity = products
+    .filter(
+      (product) => colorFilter === 'all' || product.colour === colorFilter,
+    )
+    .reduce((total, product) => total + product.price * product.quantity, 0);
 
   useEffect(() => {
     setProducts(apiProductsWithQuantity);
