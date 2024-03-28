@@ -107,6 +107,7 @@ const Cart = ({ products: apiProducts }: CartProps) => {
               <Button
                 data-testid="remove"
                 data-cy="remove-button"
+                disabled={item.quantity === 0}
                 onClick={() => handleRemove(item.id)}
                 className="justify-center w-[100px] mt-2 sm:text-xs"
               >
