@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.11% </span>
+                <span class="strong">93.93% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>31/36</span>
+                <span class='fraction'>31/33</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.3% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>12/13</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">85.71% </span>
+                <span class="strong">93.75% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>30/35</span>
+                <span class='fraction'>30/32</span>
             </div>
         
             
@@ -244,13 +244,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
@@ -259,7 +252,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -370,70 +370,70 @@ const Cart = ({ products: apiProducts }: CartProps) =&gt; {
   );
 &nbsp;
   useEffect(() =&gt; {
-    if (colorFilter === 'all') {
-      setProducts(apiProductsWithQuantity);
-    } else <span class="missing-if-branch" title="else path not taken" >E</span>{
-      const filteredProducts = <span class="cstat-no" title="statement not covered" >apiProductsWithQuantity.filter(</span>
-<span class="fstat-no" title="function not covered" >        (p</span>roduct) =&gt; <span class="cstat-no" title="statement not covered" >product.colour === colorFilter,</span>
-      );
-<span class="cstat-no" title="statement not covered" >      setProducts(filteredProducts);</span>
-    }
-  }, [colorFilter]);
+    setProducts(apiProductsWithQuantity);
+  }, []);
 &nbsp;
   return (
     &lt;div
       className="flex flex-col items-center justify-center mt-10"
       data-cy="product"
     &gt;
-      {products.map((item) =&gt; (
-        &lt;div
-          key={item.id}
-          className="flex items-start justify-center w-full mb-4"
-        &gt;
-          &lt;img
-            src={item.img}
-            alt={item.name}
-            className="w-[300px] h-[320px] sm:w-[200px] sm:h-[220px]"
-          /&gt;
-          &lt;div className="flex flex-col justify-between ml-4 w-full"&gt;
-            &lt;h2 data-cy="product-name" className="text-xs font-bold sm:text-lg"&gt;
-              {item.name}
-            &lt;/h2&gt;
-            &lt;p className="text-sm sm:text-md"&gt;${item.price.toFixed(2)}&lt;/p&gt;
-            &lt;div className="flex justify-end items-center mt-2"&gt;
-              &lt;div className="flex items-center"&gt;
-                &lt;Button
-                  variant="ghost"
-                  data-testid="minus"
-                  data-cy="minus-button"
-                  onClick={() =&gt; handleQuantityChange(item, -1)}
-                &gt;
-                  &lt;MinusCircle size={20} /&gt;
-                &lt;/Button&gt;
-                &lt;span data-cy="product-quantity" className="mx-2 sm:text-xs"&gt;
-                  {item.quantity}
-                &lt;/span&gt;
-                &lt;Button
-                  data-testid="plus"
-                  data-cy="plus-button"
-                  variant="ghost"
-                  onClick={() =&gt; handleQuantityChange(item, 1)}
-                &gt;
-                  &lt;PlusCircle size={20} /&gt;
-                &lt;/Button&gt;
+      {products
+        .filter(
+          (product) =&gt; colorFilter === 'all' || <span class="branch-1 cbranch-no" title="branch not covered" >product.colour === colorFilter,</span>
+        )
+        .map((item) =&gt; (
+          &lt;div
+            key={item.id}
+            className="flex items-start justify-center w-full mb-4"
+          &gt;
+            &lt;img
+              src={item.img}
+              alt={item.name}
+              className="w-[300px] h-[320px] sm:w-[200px] sm:h-[220px]"
+            /&gt;
+            &lt;div className="flex flex-col justify-between ml-4 w-full"&gt;
+              &lt;h2
+                data-cy="product-name"
+                className="text-xs font-bold sm:text-lg"
+              &gt;
+                {item.name}
+              &lt;/h2&gt;
+              &lt;p className="text-sm sm:text-md"&gt;${item.price.toFixed(2)}&lt;/p&gt;
+              &lt;div className="flex justify-end items-center mt-2"&gt;
+                &lt;div className="flex items-center"&gt;
+                  &lt;Button
+                    variant="ghost"
+                    data-testid="minus"
+                    data-cy="minus-button"
+                    onClick={() =&gt; handleQuantityChange(item, -1)}
+                  &gt;
+                    &lt;MinusCircle size={20} /&gt;
+                  &lt;/Button&gt;
+                  &lt;span data-cy="product-quantity" className="mx-2 sm:text-xs"&gt;
+                    {item.quantity}
+                  &lt;/span&gt;
+                  &lt;Button
+                    data-testid="plus"
+                    data-cy="plus-button"
+                    variant="ghost"
+                    onClick={() =&gt; handleQuantityChange(item, 1)}
+                  &gt;
+                    &lt;PlusCircle size={20} /&gt;
+                  &lt;/Button&gt;
+                &lt;/div&gt;
               &lt;/div&gt;
+              &lt;Button
+                data-testid="remove"
+                data-cy="remove-button"
+                onClick={() =&gt; handleRemove(item.id)}
+                className="justify-center w-[100px] mt-2 sm:text-xs"
+              &gt;
+                Remove
+              &lt;/Button&gt;
             &lt;/div&gt;
-            &lt;Button
-              data-testid="remove"
-              data-cy="remove-button"
-              onClick={() =&gt; handleRemove(item.id)}
-              className="justify-center w-[100px] mt-2 sm:text-xs"
-            &gt;
-              Remove
-            &lt;/Button&gt;
           &lt;/div&gt;
-        &lt;/div&gt;
-      ))}
+        ))}
       &lt;div className="mt-4 flex justify-end w-full px-4 sm:px-0 "&gt;
         &lt;h2 className="text-lg font-bold" data-testid="total" data-cy="total"&gt;
           Total: ${totalPriceWithQuantity.toFixed(2)}
@@ -451,7 +451,7 @@ export default Cart;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-03-28T04:54:30.910Z
+                at 2024-03-28T05:11:04.772Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

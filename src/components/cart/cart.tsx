@@ -51,70 +51,70 @@ const Cart = ({ products: apiProducts }: CartProps) => {
   );
 
   useEffect(() => {
-    if (colorFilter === 'all') {
-      setProducts(apiProductsWithQuantity);
-    } else {
-      const filteredProducts = apiProductsWithQuantity.filter(
-        (product) => product.colour === colorFilter,
-      );
-      setProducts(filteredProducts);
-    }
-  }, [colorFilter]);
+    setProducts(apiProductsWithQuantity);
+  }, []);
 
   return (
     <div
       className="flex flex-col items-center justify-center mt-10"
       data-cy="product"
     >
-      {products.map((item) => (
-        <div
-          key={item.id}
-          className="flex items-start justify-center w-full mb-4"
-        >
-          <img
-            src={item.img}
-            alt={item.name}
-            className="w-[300px] h-[320px] sm:w-[200px] sm:h-[220px]"
-          />
-          <div className="flex flex-col justify-between ml-4 w-full">
-            <h2 data-cy="product-name" className="text-xs font-bold sm:text-lg">
-              {item.name}
-            </h2>
-            <p className="text-sm sm:text-md">${item.price.toFixed(2)}</p>
-            <div className="flex justify-end items-center mt-2">
-              <div className="flex items-center">
-                <Button
-                  variant="ghost"
-                  data-testid="minus"
-                  data-cy="minus-button"
-                  onClick={() => handleQuantityChange(item, -1)}
-                >
-                  <MinusCircle size={20} />
-                </Button>
-                <span data-cy="product-quantity" className="mx-2 sm:text-xs">
-                  {item.quantity}
-                </span>
-                <Button
-                  data-testid="plus"
-                  data-cy="plus-button"
-                  variant="ghost"
-                  onClick={() => handleQuantityChange(item, 1)}
-                >
-                  <PlusCircle size={20} />
-                </Button>
+      {products
+        .filter(
+          (product) => colorFilter === 'all' || product.colour === colorFilter,
+        )
+        .map((item) => (
+          <div
+            key={item.id}
+            className="flex items-start justify-center w-full mb-4"
+          >
+            <img
+              src={item.img}
+              alt={item.name}
+              className="w-[300px] h-[320px] sm:w-[200px] sm:h-[220px]"
+            />
+            <div className="flex flex-col justify-between ml-4 w-full">
+              <h2
+                data-cy="product-name"
+                className="text-xs font-bold sm:text-lg"
+              >
+                {item.name}
+              </h2>
+              <p className="text-sm sm:text-md">${item.price.toFixed(2)}</p>
+              <div className="flex justify-end items-center mt-2">
+                <div className="flex items-center">
+                  <Button
+                    variant="ghost"
+                    data-testid="minus"
+                    data-cy="minus-button"
+                    onClick={() => handleQuantityChange(item, -1)}
+                  >
+                    <MinusCircle size={20} />
+                  </Button>
+                  <span data-cy="product-quantity" className="mx-2 sm:text-xs">
+                    {item.quantity}
+                  </span>
+                  <Button
+                    data-testid="plus"
+                    data-cy="plus-button"
+                    variant="ghost"
+                    onClick={() => handleQuantityChange(item, 1)}
+                  >
+                    <PlusCircle size={20} />
+                  </Button>
+                </div>
               </div>
+              <Button
+                data-testid="remove"
+                data-cy="remove-button"
+                onClick={() => handleRemove(item.id)}
+                className="justify-center w-[100px] mt-2 sm:text-xs"
+              >
+                Remove
+              </Button>
             </div>
-            <Button
-              data-testid="remove"
-              data-cy="remove-button"
-              onClick={() => handleRemove(item.id)}
-              className="justify-center w-[100px] mt-2 sm:text-xs"
-            >
-              Remove
-            </Button>
           </div>
-        </div>
-      ))}
+        ))}
       <div className="mt-4 flex justify-end w-full px-4 sm:px-0 ">
         <h2 className="text-lg font-bold" data-testid="total" data-cy="total">
           Total: ${totalPriceWithQuantity.toFixed(2)}
