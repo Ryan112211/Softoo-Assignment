@@ -32,9 +32,16 @@ const Cart = ({ products: apiProducts }: CartProps) => {
     });
     setProducts(updatedProducts);
   };
-
   const handleRemove = (id: number) => {
-    const updatedProducts = products.filter((product) => product.id !== id);
+    const updatedProducts = products.map((product) => {
+      if (product.id === id) {
+        return {
+          ...product,
+          quantity: 0,
+        };
+      }
+      return product;
+    });
     setProducts(updatedProducts);
   };
 

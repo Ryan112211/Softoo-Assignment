@@ -29,14 +29,14 @@ test('removes product correctly', () => {
       price: 10,
       img: 'test.jpg',
       colour: 'red',
-      quantity: 0,
+      quantity: 4,
     },
   ];
 
   render(<Cart products={mockProducts} />);
   expect(screen.getByText('Test Product')).toBeInTheDocument();
   fireEvent.click(screen.getByTestId('remove'));
-  expect(screen.queryByText('Test Product')).not.toBeInTheDocument();
+  expect(screen.getByTestId('total').textContent).toBe('Total: $0.00');
 });
 
 test('calculates total price correctly', () => {

@@ -21,17 +21,11 @@ describe('Cart', () => {
     cy.get('[data-cy=product-quantity]').eq(0).should('contain', '0');
   });
 
-  it('removes the first product from cart', () => {
-    cy.get('[data-cy=product-name]')
-      .eq(0)
-      .invoke('text')
-      .then((firstProductName) => {
-        cy.get('[data-cy=remove-button]').eq(0).click();
-        cy.get('[data-cy=product-name]').should(
-          'not.contain',
-          firstProductName,
-        );
-      });
+  it('removes the total value when a product is removed', () => {
+    cy.get('[data-cy=plus-button]').eq(0).click();
+    cy.get('[data-cy=product-quantity]').eq(0).should('contain', '1');
+    cy.get('[data-cy=remove-button]').eq(0).click();
+    cy.get('[data-cy=total]').should('contain', '0.00');
   });
 
   it('changes total price when quantity changes', () => {
